@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="container-form">
+  <div class="col-xs-6">
+    <h2>REPORTE DE DATOS</h2>
+    <h3>El número mayor es: {{ maximo }}</h3>
+    <h3>El número menor es: {{ menor }}</h3>
+    <h3>Su promedio es: {{ calculo }}</h3>
+    <br>
+    <h3>|| El conteo de los números repetidos son: ||</h3>
+    {% for result in results %}
+    <h3>{{ result }}</h3>
+    {% endfor %}
+    
+    <a href="/" class="btn btn-default btn-primary">Cerrar</a>
+  </div>
+</div>
+
+{% endblock %}

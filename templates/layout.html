@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<!--
+configurar todo del server principal
+hacer crud total con el server principal
+-->
+<html>
+    <head>
+        <title>Formulario</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <link href="../static/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" >
+        <link href="../static/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css" >
+        <link rel="stylesheet" href="../static/font_awesome_5_15_3/css/all.min.css" type="text/css">
+        <link type="text/css" rel="stylesheet" href="../static/sweetalert2/sweetalert2.min.css">
+        <link type="text/css" rel="stylesheet" href="../static/css/style.css">
+
+        
+	 <style>
+        body{
+            padding-top: 60px;
+        }
+        .tr-head{background: #dff0d8}
+     </style>
+    </head>
+    <body>
+        <div class="navbar navbar navbar-inverse navbar-fixed-top">
+                <div class="navbar-inner">
+                    <div class="container">
+                        <a href="" class="brand">
+                            UTL-IDGS
+                        </a>
+                        <ul class="nav">
+                            <li>
+                                <a href="">
+                                    <i class="icon-home icon-white">
+                                        Inicio
+                                    </i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="">
+                                    <i class="icon-home icon-white">
+                                        Usuarios
+                                    </i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="">
+                                    <i class="icon-home icon-white">
+                                        Alumnos
+                                    </i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+        </div>
+        <div class="container">
+            {%block content%}
+            
+            {%endblock%}
+        </div>
+    </body>
+</html>
