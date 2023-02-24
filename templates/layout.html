@@ -57,6 +57,15 @@ hacer crud total con el server principal
                 </div>
         </div>
         <div class="container">
+            {%with messages=get_flashed_messages()%}
+                {%if messages%}
+                    {%for message in messages%}
+                        <div class="alert alert_success">
+                            {{message}}
+                        </div>
+                    {%endfor%}
+                {%endif%}
+            {%endwith%}
             {%block content%}
             
             {%endblock%}

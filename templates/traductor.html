@@ -1,0 +1,31 @@
+{% extends "layout.html"%}
+
+{%block content%}
+<div class="col-xs-6">
+    {% from "_macros.html" import render_field %}
+    <form action="" method="post" novalidate>
+    <div class="row_control-group">
+        
+            {{render_field(form.español)}}
+            {{render_field(form.ingles)}}
+            <input type="submit" value="Registrar">
+    </div>
+    </form>
+</div>
+
+<br><br>
+
+<div class="form-check">
+    <input class="form-check-input" type="radio" name="español" id="español">
+    <label class="form-check-label" for="flexRadioDefault1">
+        Español
+      </label>
+</div>
+<div class="form-check">
+    <input class="form-check-input" type="radio" name="ingles" id="ingles">
+    <label class="form-check-label" for="flexRadioDefault2">
+        Ingles
+      </label>
+</div>
+{%endblock%}
+
