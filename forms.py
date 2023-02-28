@@ -37,6 +37,9 @@ class UsuarioForm(Form):
     ingles=StringField('Ingles',[
         validators.DataRequired(message = 'El campo es requerido')])
 
+class WordsForm(Form):
+    español = StringField('Español')
+    ingles = StringField('Ingles')
 
     
     

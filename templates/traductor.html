@@ -1,31 +1,36 @@
-{% extends "layout.html"%}
-
-{%block content%}
-<div class="col-xs-6">
-    {% from "_macros.html" import render_field %}
+{% extends 'layout.html' %}
+{% block content %}
+{% from '_macros.html' import render_field %}
+<div class="container  text-center">
+    <div style="border: 3px solid purple; width: 50%; margin-left: 275px;" >
+    <br>
+    <h3>Buscador de Palabras Español e Ingles</h3>
+    <br>
     <form action="" method="post" novalidate>
-    <div class="row_control-group">
+            <div class="row control_group" style="padding-left: 25px;">
+                {{render_field(form.español)}}
+                {{render_field(form.ingles)}}
+            </div>
+            <input type="submit" value="Guardar" id="btnGuardar" name="btnGuardar" class="btn btn-success">
+            <br><br>
         
-            {{render_field(form.español)}}
-            {{render_field(form.ingles)}}
-            <input type="submit" value="Registrar">
-    </div>
+            <div class="row control_group">
+                <input type="radio" name="translate" value="español"> Ingles
+                <input type="text" name="txtEspañol" placeholder="Palabra Español" id="txtEspañol" style="padding-right: 35px; width: 110px;">
+                <br>
+                <input type="radio" name="translate" value="ingles"> Español
+                <input type="text" name="txtIngles" id="txtIngles" placeholder="Palabra Ingles" style="padding-right: 60px; width: 90px;">
+                <br>
+            </div>
+            <input type="submit" value="Traducir" id="btnTraducir" name="btnTraducir" class="btn btn-primary">
+            <br>
+            <br>
+            <h4> Resultado:
+                {{datosEncontrados}}
+            </h4>
+       <br>
     </form>
+    </div>
+    </div>
 </div>
-
-<br><br>
-
-<div class="form-check">
-    <input class="form-check-input" type="radio" name="español" id="español">
-    <label class="form-check-label" for="flexRadioDefault1">
-        Español
-      </label>
-</div>
-<div class="form-check">
-    <input class="form-check-input" type="radio" name="ingles" id="ingles">
-    <label class="form-check-label" for="flexRadioDefault2">
-        Ingles
-      </label>
-</div>
-{%endblock%}
-
+{% endblock %}

@@ -43,33 +43,35 @@ def alumnos():
     return render_template('Alumnos.html',form=reg_alum,mat=mat,nom=nom)
 
 #actividad de traductor
-@app.route("/traductor",methods=['POST','GET'])
+@app.route('/traductor', methods=['GET', 'POST'])
 def traductor():
-        reg_leng=forms.UsuarioForm(request.form)
-        esp=''
-        ing=''
-        if request.method == 'POST' and reg_leng.validate():
-            esp=reg_leng.español.data
-            ing=reg_leng.ingles.data
-            file=open('palabras.txt','a')
-            file.write('\n'+ esp)
-            file.write('\n'+ ing)
+    words = forms.WordsForm(request.form)
+    datosEncontrados = ''
+    if(request.method == 'POST' and words.validate()):
+        btnGuardar = request.form.get('btnGuardar')
+        btnTraducir = request.form.get('btnTraducir')
+        if(btnGuardar == 'Guardar'):    
+            file = open('palabras.txt', 'a')
+            file.write('\n' + words.español.data.upper() + '\n' + words.ingles.data.upper())
             file.close()
-        return render_template('traductor.html', form=reg_leng, esp=esp, ing=ing)
+        if(btnTraducir == 'Traducir'):
+            opcion = request.form.get('translate')
+            file = open('palabras.txt', 'r')
+            palabras = [linea.rstrip('\n') for linea in file]
+            if(opcion == 'español'):
+                espPalabra = request.form.get('txtEspañol')
+                for posicion in range(len(palabras)):
+                    if(palabras[posicion] == espPalabra.upper()):
+                        datosEncontrados = palabras[posicion + 1]
+            elif(opcion == 'ingles'):
+                engPalabra = request.form.get('txtIngles')
+                for posicion in range(len(palabras)):
+                    if(palabras[posicion] == engPalabra.upper()):
+                        datosEncontrados = palabras[posicion - 1]
+                        print(datosEncontrados)
 
-@app.route("/buscarP",methods=['POST','GET'])
-def buscarP():
-        reg_leng=forms.UsuarioForm(request.form)
-        esp=''
-        ing=''
-        if request.method == 'POST' and reg_leng.validate():
-            esp=reg_leng.español.data
-            ing=reg_leng.ingles.data
-            file=open('palabras.txt','a')
-            file.write('\n'+ esp)
-            file.write('\n'+ ing)
-            file.close()
-        return render_template('traductor.html', form=reg_leng, esp=esp, ing=ing)
+    return render_template('traductor.html', form = words, datosEncontrados = datosEncontrados)
+
 
 #este es parte de mi codigo de la actividad cajas 
 @app.route('/')
@@ -109,7 +111,6 @@ def cajas():
         results.append("{} aparece {} veces".format(number, resultado))
 
     return render_template('resultado.html', maximo = maximo, menor = menor, calculo = calculo, results = results)
-
 
 
 if __name__ == "__main__":
